@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 export default function Dynamic() {
   const { id } = useParams();
-  // const id = 900260009;
+
   const [results, setResults] = useState([])
 
 

@@ -1,6 +1,6 @@
 import { VscAccount, VscHeart, VscTwitter } from "react-icons/vsc";
 
-export default function Layout({ title, keyword, description, children }) {
+export default function Layout({ children }) {
   return (
     <div>
       <main>
