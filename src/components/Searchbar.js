@@ -35,12 +35,10 @@ export default function Searchbar() {
     e.preventDefault();
   }
 
-
-
   const rendered =
     results.map((stop) => {
       return (
-        <div key={stop.id} className="border border-blue-300 shadow rounded-md my-1 hover:border-2 hover:shadow-xl p-2 w-11/12 ">
+        <div key={stop.id} className="border border-blue-300 bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-md rounded-md my-1 hover:border-2 hover:shadow-2xl p-2 w-11/12 ">
           <Link to={`/${stop.id}`} className=" flex space-x-2">
             <div className="flex-1 space-y-1 ">
               <div className="rounded  font-bold ">{stop.name}</div>
@@ -79,7 +77,7 @@ export default function Searchbar() {
                 <RiRouteFill className='h-6 w-6 animate-bounce' />
 
                 <input value={term} onChange={(e) => setTerm(e.target.value)}
-                  type="search" placeholder="Search for it..." className=" text-center input input-bordered my-2 w-full px-2 " />
+                  type="search" placeholder="Search for it..." className="bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-center input input-bordered my-2 w-full px-2 " />
               </form>
 
               {rendered}
