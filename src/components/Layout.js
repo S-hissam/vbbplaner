@@ -11,13 +11,13 @@ export default function Layout({ children }) {
               <div className="artboard phone-4 artboard-demo justify-start bg-gradient-to-r from-cyan-500 to-blue-500">
                 {children}
                 <div className="navbar shadow-lg bg-black text-neutral-content w-full absolute bottom-2 flex items-center justify-around " >
-                  <a href='About' className="hover:animate-pulse btn btn-ghost rounded-btn">
+                  <a href='/' className="hover:animate-pulse btn btn-ghost rounded-btn">
                     <VscTwitter/>
                   </a>
                   <a href="/" className="hover:animate-pulse btn btn-ghost rounded-btn">
                     <VscHeart />
                   </a>
-                  <a href='Profil' className="hover:animate-pulse btn btn-ghost rounded-btn">
+                  <a href='/' className="hover:animate-pulse btn btn-ghost rounded-btn">
                     <VscAccount />
                   </a>
                 </div>

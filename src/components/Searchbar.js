@@ -1,5 +1,11 @@
 import { RiRouteFill } from 'react-icons/ri'
 import { useState, useEffect } from 'react'
+import Dynamic from '../Pages/Dynamic'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route, Link
+} from "react-router-dom";
 
 export default function Searchbar() {
   const [term, setTerm] = useState('')
@@ -27,7 +33,6 @@ export default function Searchbar() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
   }
 
 
@@ -36,23 +41,23 @@ export default function Searchbar() {
     results.map((stop) => {
       return (
         <div key={stop.id} className="border border-blue-300 shadow rounded-md my-1 hover:border-2 hover:shadow-xl p-2 w-11/12 ">
-            <a href={`/${stop.id}`} className=" flex space-x-2">
-              <div className="flex-1 space-y-1 ">
-                <div className="rounded  font-bold ">{stop.name}</div>
-                <div className="">
-                  <h2>Transport Options :</h2>
-                  <div className="flex gap-3 flex-wrap ">
-                    <div className=""> {(stop.products ? `${stop.products.bus ? 'Bus' : ''}` : '')}</div>
-                    <div className=""> {(stop.products ? `${stop.products.tram ? 'Tram' : ''}` : '')}</div>
-                    <div className=""> {(stop.products ? `${stop.products.express ? 'Express' : ''}` : '')}</div>
-                    <div className=""> {(stop.products ? `${stop.products.ferry ? 'Ferry' : ''}` : '')}</div>
-                    <div className=""> {(stop.products ? `${stop.products.regional ? 'Regional' : ''}` : '')}</div>
-                    <div className=""> {(stop.products ? `${stop.products.subway ? 'Subway' : ''}` : '')}</div>
-                    <div className=''> {(stop.products ? `${stop.products.suburban ? 'Suburban' : ''}` : '')}</div>
-                  </div>
+          <Link to={`/${stop.id}`} className=" flex space-x-2">
+            <div className="flex-1 space-y-1 ">
+              <div className="rounded  font-bold ">{stop.name}</div>
+              <div className="">
+                <h2>Transport Options :</h2>
+                <div className="flex gap-3 flex-wrap ">
+                  <div className=""> {(stop.products ? `${stop.products.bus ? 'Bus' : ''}` : '')}</div>
+                  <div className=""> {(stop.products ? `${stop.products.tram ? 'Tram' : ''}` : '')}</div>
+                  <div className=""> {(stop.products ? `${stop.products.express ? 'Express' : ''}` : '')}</div>
+                  <div className=""> {(stop.products ? `${stop.products.ferry ? 'Ferry' : ''}` : '')}</div>
+                  <div className=""> {(stop.products ? `${stop.products.regional ? 'Regional' : ''}` : '')}</div>
+                  <div className=""> {(stop.products ? `${stop.products.subway ? 'Subway' : ''}` : '')}</div>
+                  <div className=''> {(stop.products ? `${stop.products.suburban ? 'Suburban' : ''}` : '')}</div>
                 </div>
               </div>
-            </a>
+            </div>
+          </Link>
         </div>
       )
     })
@@ -60,21 +65,30 @@ export default function Searchbar() {
 
   return (
     <>
-      <h1 className='text-white mt-24 text-lg font-extrabold font-mono'>Welcome to Fahrplaner</h1>
-      <h1 className='text-white  text-lg font-extrabold font-mono'>Search For Stop</h1>
-      <svg className="animate-bounce w-6 h-6">
-      </svg>
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            <>
+              <h1 className='text-white mt-24 text-lg font-extrabold font-mono'>Welcome to Fahrplaner</h1>
+              <h1 className='text-white  text-lg font-extrabold font-mono'>Search For Stop</h1>
+              <svg className="animate-bounce w-6 h-6">
+              </svg>
 
-      <form onSubmit={onSubmit}
-        className="my-4 flex-col flex items-center justify-center w-11/12">
-        <RiRouteFill className='h-6 w-6 animate-bounce' />
+              <form onSubmit={onSubmit}
+                className="my-4 flex-col flex items-center justify-center w-11/12">
+                <RiRouteFill className='h-6 w-6 animate-bounce' />
 
-        <input value={term} onChange={(e) => setTerm(e.target.value)}
-          type="search" placeholder="Search for it..." className=" text-center input input-bordered my-2 w-full px-2 " />
-      </form>
+                <input value={term} onChange={(e) => setTerm(e.target.value)}
+                  type="search" placeholder="Search for it..." className=" text-center input input-bordered my-2 w-full px-2 " />
+              </form>
 
-      {rendered}
-      
+              {rendered}
+            </>
+          } />
+
+          <Route path='/:id' element={<Dynamic />} />
+        </Routes>
+      </Router>
 
     </>
 
