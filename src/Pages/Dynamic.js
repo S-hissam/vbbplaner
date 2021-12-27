@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function Dynamic() {
-  const { id } = useParams();
   const [results, setResults] = useState([])
+  const { id } = useParams();
   const navigate = useNavigate();
 
 
@@ -17,10 +17,10 @@ export default function Dynamic() {
       const response = await fetch(url + query);
       const data = await response.json();
 
-      if (response.status === 404 || response.status === 400 || response.status === 502 ) {
+      if (response.status === 404 || response.status === 400 || response.status === 502 || response.status === 500) {
         navigate('/')
       }
-        
+
       return data
     }
 
@@ -46,7 +46,7 @@ export default function Dynamic() {
                   <p className={`rounded-md ${depart.delay ? 'bg-red-700' : 'bg-green-600'} px-1`}>Delay: {depart.delay ? `Yes ${depart.delay} mins` : 'no'}</p>
                   <p className='  rounded-md bg-purple-700 px-1'>Line: {depart.line.productName} {depart.line.name}</p>
                   <p className={`rounded-md bg-yellow-700 px-1`}> {depart.remarks[depart.remarks.length - 1].type} : {depart.remarks[depart.remarks.length - 1].summary}</p>
-                  
+
                 </div>
 
               </div>
