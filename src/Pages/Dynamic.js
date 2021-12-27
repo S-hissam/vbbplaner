@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 export default function Dynamic() {
   const { id } = useParams();
-
   const [results, setResults] = useState([])
+  const navigate = useNavigate();
 
 
 
@@ -13,16 +13,21 @@ export default function Dynamic() {
   useEffect(() => {
     const getLocation = async () => {
       const url = 'https://v5.vbb.transport.rest/';
-      const query = `stops/${id}/departures?results=3/`
+      const query = `stops/${id}/departures?results=4/`
       const response = await fetch(url + query);
       const data = await response.json();
-      return data
 
+      if (response.status === 404 || response.status === 400 || response.status === 502 ) {
+        navigate('/')
+      }
+        
+      return data
     }
 
     if (id) {
       getLocation().then(data => setResults(data)).catch(err => console.log(`here is an error${err}`))
     }
+
 
   }, [id])
 
@@ -40,8 +45,8 @@ export default function Dynamic() {
                   <p className=' rounded-md bg-purple-700 px-1'>When: {when} </p>
                   <p className={`rounded-md ${depart.delay ? 'bg-red-700' : 'bg-green-600'} px-1`}>Delay: {depart.delay ? `Yes ${depart.delay} mins` : 'no'}</p>
                   <p className='  rounded-md bg-purple-700 px-1'>Line: {depart.line.productName} {depart.line.name}</p>
-                  <p className={`rounded-md bg-yellow-700 px-1`}> {depart.remarks[depart.remarks.length - 1].type} {depart.remarks[depart.remarks.length - 1].summary}</p>
-                  {/* <p className={`rounded-md bg-yellow-700 px-1`}>{depart.remarks[3].type} : {depart.remarks[3].summary}</p> */}
+                  <p className={`rounded-md bg-yellow-700 px-1`}> {depart.remarks[depart.remarks.length - 1].type} : {depart.remarks[depart.remarks.length - 1].summary}</p>
+                  
                 </div>
 
               </div>
