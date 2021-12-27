@@ -13,7 +13,7 @@ export default function Dynamic() {
   useEffect(() => {
     const getLocation = async () => {
       const url = 'https://v5.vbb.transport.rest/';
-      const query = `stops/${id}/departures?results=4/`
+      const query = `stops/${id}/departures?results=3/`
       const response = await fetch(url + query);
       const data = await response.json();
 
