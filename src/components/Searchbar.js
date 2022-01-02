@@ -42,7 +42,7 @@ export default function Searchbar() {
   }
 
 
-  const rendered = results.map((stop) => {
+  const rendered = results?  `${results.map((stop) => {
     return (
       <div key={stop.id} className="border border-blue-300 bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-md rounded-md my-1 hover:border-2 hover:shadow-2xl p-2 w-11/12 ">
         <Link to={`/${stop.id}`} className=" flex space-x-2">
@@ -64,7 +64,7 @@ export default function Searchbar() {
         </Link>
       </div>
     )
-  })
+  })}` : "No data from api... ";
 
 
   return (
