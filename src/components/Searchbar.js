@@ -4,13 +4,13 @@ import Dynamic from '../Pages/Dynamic'
 import {
   BrowserRouter as Router,
   Routes,
-  Route, Link, useNavigate
+  Route, Link
 } from "react-router-dom";
 
 export default function Searchbar() {
   const [term, setTerm] = useState('')
   const [results, setResults] = useState([])
-  // const navigate = useNavigate();
+
 
 
   console.log(results)
@@ -41,7 +41,6 @@ export default function Searchbar() {
     e.preventDefault();
   }
 
-
   const rendered = results?  `${results.map((stop) => {
     return (
       <div key={stop.id} className="border border-blue-300 bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-md rounded-md my-1 hover:border-2 hover:shadow-2xl p-2 w-11/12 ">
@@ -64,7 +63,7 @@ export default function Searchbar() {
         </Link>
       </div>
     )
-  })}` : "No data from api... ";
+  })}` : `No data from api... `;
 
 
   return (
@@ -74,7 +73,7 @@ export default function Searchbar() {
           <Route path='/' element={
             <>
               <h1 className='text-white mt-24 text-lg font-extrabold font-mono'>Welcome to Fahrplaner</h1>
-              <h1 className='text-white  text-lg font-extrabold font-mono'>Search For Stop</h1>
+              <h1 className='text-white  text-md font-bold font-mono text-center'>Search For Location with transport options</h1>
               <svg className="animate-bounce w-6 h-6">
               </svg>
 
@@ -85,8 +84,7 @@ export default function Searchbar() {
                 <input value={term} onChange={(e) => setTerm(e.target.value)}
                   type="search" placeholder="Search for it..." className="bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-center input input-bordered my-2 w-full px-2 " />
               </form>
-
-              {results === !undefined ? `${rendered}` : ''}
+              {rendered}
             </>
           } />
 
