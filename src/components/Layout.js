@@ -9,7 +9,7 @@ export default function Layout({ children }) {
             <div className="camera"></div>
             <div className="display">
               <div
-                className="artboard phone-2 artboard-demo justify-start bg-gradient-to-r from-sky-600 to-indigo-500 text-white">
+                className="artboard phone-1 artboard-demo justify-start bg-gradient-to-r from-sky-600 to-indigo-500 text-white">
                 {children}
                 <div className="navbar shadow-lg bg-black text-neutral-content w-full absolute bottom-2 flex items-center justify-around " >
                   <a href='/' className="hover:animate-pulse btn btn-ghost rounded-btn">
