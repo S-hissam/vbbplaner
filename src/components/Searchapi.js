@@ -92,7 +92,7 @@ export default function Searchbar() {
                   'loading...'}
 
               </div>
-              <div className='text-center overflow-hidden overflow-y-scroll  p-1 h-44'>
+              <div className='text-center overflow-hidden overflow-y-scroll  p-1 h-52'>
                 {newLine ?
                   newLine
                   :
