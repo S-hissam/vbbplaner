@@ -14,11 +14,11 @@ export default function Searchbar() {
   useEffect(() => {
     const getLocation = async () => {
 
-      const url = 'https://v5.vbb.transport.rest/'; 
+      const url = 'https://v5.vbb.transport.rest/';
       const query = `stations?query=${term}&results=1&fuzzy=true&completion=true`
       const response = await fetch(url + query);
       const data = await response.json();
-      
+
       if (response.status === 404 || response.status === 400 || response.status === 502 || response.status === 500) {
         return alert(`api problem:Err code:  ${response.status}`)
       }
@@ -30,7 +30,7 @@ export default function Searchbar() {
     if (term) {
       // getLocation().then(data => console.log(data)).catch(err => console.log(`here is an error ${err}`))
       getLocation().then(data => setResults(Object.entries(data))).catch(err => console.log(`here is an error ${err}`))
-      
+
     }
 
   }, [term])
@@ -38,19 +38,37 @@ export default function Searchbar() {
 
   console.log(results)
   let newD;
-  if(results && results[0]){
-    if(results[0][1])
-    newD = results[0][1]
+  let newLine;
+  let renderLine;
+  if (results && results[0]) {
+    if (results[0][1])
+      newD = results[0][1]
+    if (results[0][1].lines) {
+      newLine = results[0][1].lines.map((line) => {
+        return (
+          <div className='p-1 rounded border mb-1 hover:bg-green-600'>
+            <Link to={`/${line.id}`} >
+              <div>Line mode:{line.mode} : Line Name:{line.name}
+              </div>
+            </Link>
+          </div>
+        )
+      })
+    }
   }
-  
-  console.log('newb'+ newD)
+
+  console.log('newb=' + newD)
+  // console.log('newLine:=' + JSON.stringify(newLine))
 
 
   const onSubmit = (e) => {
     e.preventDefault();
   }
 
+
+
   return (
+
     <>
       <Router>
         <Routes>
@@ -68,12 +86,18 @@ export default function Searchbar() {
                 <input value={term} onChange={(e) => setTerm(e.target.value)}
                   type="search" placeholder="Search for it..." className="bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-center input input-bordered my-2 w-full px-2 " />
               </form>
-              <div className='text-center w-inherit'>
-              {newD?
-              (`${newD.name}`)
-            :
-            'loading...'}
-            
+              <div className='text-center font-bold  border-b-4 mb-2'>
+                {newD ?
+                  `Station: ${newD.name}`
+                  :
+                  'loading...'}
+
+              </div>
+              <div className='text-center overflow-hidden overflow-y-scroll '>
+                {newLine ?
+                  newLine
+                  :
+                  'loading lines...'}
               </div>
             </>
           } />

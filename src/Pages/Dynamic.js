@@ -19,6 +19,7 @@ export default function Dynamic() {
 
       if (response.status === 404 || response.status === 400 || response.status === 502 || response.status === 500) {
         navigate('/')
+        alert('Api server problem code' + response.status)
       }
 
       return data

@@ -11,12 +11,12 @@ function App() {
 
 
   return (
-    <div className='flex justify-center items-center'>
-      <Layout className='flex1'>
+    <div className='flex justify-center items-center space-x-2'>
+      <Layout >
         <Searchbar />
       </Layout>
-      <Layout lassName='flex1'>
-        <Searchapi/>
+      <Layout >
+        <Searchapi />
       </Layout>
     </div>
   );
