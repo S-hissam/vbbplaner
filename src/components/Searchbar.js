@@ -21,7 +21,7 @@ export default function Searchbar() {
       const query = `locations?query=${term}&results=3`
       const response = await fetch(url + query);
       const data = await response.json();
-      
+
       if (response.status === 404 || response.status === 400 || response.status === 502 || response.status === 500) {
         return alert(`api problem:Err code:  ${response.status}`)
       }
@@ -41,7 +41,7 @@ export default function Searchbar() {
     e.preventDefault();
   }
 
-  const rendered = results?  `${results.map((stop) => {
+  const rendered = results ? results.map((stop) => {
     return (
       <div key={stop.id} className="border border-blue-300 bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-md rounded-md my-1 hover:border-2 hover:shadow-2xl p-2 w-11/12 ">
         <Link to={`/${stop.id}`} className=" flex space-x-2">
@@ -63,7 +63,7 @@ export default function Searchbar() {
         </Link>
       </div>
     )
-  })}` : `No data from api... `;
+  }) : `No data from api... `;
 
 
   return (
