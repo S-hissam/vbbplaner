@@ -72,7 +72,7 @@ export default function Searchbar() {
         <Routes>
           <Route path='/' element={
             <>
-              <h1 className='text-white mt-24 text-lg font-extrabold font-mono'>Welcome to Fahrplaner</h1>
+              <h1 className='text-white mt-16 text-lg font-extrabold font-mono'>Welcome to Fahrplaner</h1>
               <h1 className='text-white  text-md font-bold font-mono text-center'>Search For Location with transport options</h1>
               <svg className="animate-bounce w-6 h-6">
               </svg>
