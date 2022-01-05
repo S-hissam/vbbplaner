@@ -1,6 +1,7 @@
 # hosted : https://fahrplaner.netlify.app/
 - Created with Create React App.
 - Tailwindcss for Styling.
+- API documentation: https://v5.vbb.transport.rest/api.html 
 
 Small Note: unluckily the API endpoint with the locations, that's my preferred API which has better response informations, was down with internal server error code: 500.
 Then I continued with the stations API endpoint to present a product wich has a fn. to show.
