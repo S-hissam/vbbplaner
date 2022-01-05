@@ -28,7 +28,7 @@ export default function Searchbar() {
 
 
     if (term) {
-      // getLocation().then(data => console.log(data)).catch(err => console.log(`here is an error ${err}`))
+      
       getLocation().then(data => setResults(Object.entries(data))).catch(err => console.log(`here is an error ${err}`))
 
     }
@@ -45,7 +45,7 @@ export default function Searchbar() {
     if (results[0][1].lines) {
       newLine = results[0][1].lines.map((line) => {
         return (
-          <div className='p-1 rounded border mb-1 hover:bg-green-600'>
+          <div key={line.id} className='p-1 rounded border mb-1 hover:bg-green-600'>
             <Link to={`/${line.id}`} >
               <div>Line mode:{line.mode} : Line Name:{line.name}
               </div>
@@ -57,7 +57,7 @@ export default function Searchbar() {
   }
 
   console.log('newb=' + newD)
-  // console.log('newLine:=' + JSON.stringify(newLine))
+
 
 
   const onSubmit = (e) => {
